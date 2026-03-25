@@ -1,4 +1,5 @@
 package ru.netology.inherit;
+
 public class SimpleTask extends Task {
     protected String title;
 
@@ -7,7 +8,15 @@ public class SimpleTask extends Task {
         this.title = title;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
+    }
+
+    @Override
+    public boolean matches(String query) {
+        if (title.contains(query)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -4,13 +4,18 @@ import java.util.Objects;
 
 public class Task {
     protected int id;
+    protected String query;
 
-    public Task(int id){
+    public Task(int id) {
         this.id = id;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
+    }
+
+    public boolean matches(String query) {
+        return false;
     }
 
     @Override
