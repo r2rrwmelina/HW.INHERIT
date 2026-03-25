@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class TodosTest {
 
-    SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-    String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+    SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям и купить хлеб");
+    String[] subtasks = {"молоко", "яйца", "хлеб"};
     Epic epic = new Epic(55, subtasks);
 
     Meeting meeting = new Meeting(
@@ -34,7 +34,7 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldFindAMatchWithSimpleTask() {
+    public void shouldFindOneTask() {
 
         Task[] expected = {simpleTask};
         Task[] actual = todos.search("Позвонить родителям");
@@ -43,46 +43,19 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldNotFindAMatchWithSimpleTask() {
+    public void shouldNotFindTasks() {
 
         Task[] expected = {};
-        Task[] actual = todos.search("Позвонить друзьям");
+        Task[] actual = todos.search("Buy some tea");
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldFindAMatchWithEpic() {
+    public void shouldFindAMatchWithFewTasks() {
 
-        Task[] expected = {epic};
-        Task[] actual = todos.search("Молоко");
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldNotFindAMatchWithEpic() {
-
-        Task[] expected = {};
-        Task[] actual = todos.search("Огурцы");
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindAMatchWithMeeting() {
-
-        Task[] expected = {meeting};
-        Task[] actual = todos.search("Приложение НетоБанка");
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldNotFindAMatchWithMeeting() {
-
-        Task[] expected = {};
-        Task[] actual = todos.search("Во вторник после обеда");
+        Task[] expected = {simpleTask, epic};
+        Task[] actual = todos.search("хлеб");
 
         Assertions.assertArrayEquals(expected, actual);
     }
